@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -16,6 +17,11 @@ const config = {
     filename: 'bundle.js'
   },
   plugins: [
+    // Ignore node_modules so CPU usage with poll
+    // watching drops significantly.
+    new webpack.WatchIgnorePlugin([
+      path.resolve(__dirname, "node_modules")
+    ]),
     new ProgressBarPlugin(),
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
