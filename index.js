@@ -1,8 +1,9 @@
 import "./globalStyles.scss";
-const { date } = require('./app');
+import React from 'react';
+import { render } from 'react-dom';
+import { date } from './app';
+import './globalStyles.scss';
 
+const Time = () => <div>{date.toString()}</div>;
 
-const showDate = () => console.log(date);
-
-
-showDate();
+render(<Time />, document.getElementById('root'));
