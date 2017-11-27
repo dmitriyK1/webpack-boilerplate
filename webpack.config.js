@@ -4,6 +4,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = {
+  devServer: {
+    stats: 'errors-only',
+    host: process.env.HOST, // Defaults to `localhost`
+    port: process.env.PORT, // Defaults to 8080,
+    overlay: true,
+  },
   entry: './src',
   output: {
     path: path.resolve(__dirname, 'build'),
