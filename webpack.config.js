@@ -1,5 +1,7 @@
 const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = {
   entry: './src',
@@ -8,7 +10,20 @@ const config = {
     filename: 'bundle.js'
   },
   plugins: [
-    new ProgressBarPlugin()
+    new ProgressBarPlugin(),
+    new CleanWebpackPlugin(['build']),
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: require('html-webpack-template'),
+      appMountId: 'root',
+      title: "TADAMUS",
+      meta: [
+        {
+          name: 'description',
+          content: 'Very important page!'
+        }
+      ],
+    })
   ],
   module: {
     rules: [
