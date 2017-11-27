@@ -2,7 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
+// new CleanWebpackPlugin(['build']),
 
 const config = {
   devServer: {
@@ -23,7 +25,6 @@ const config = {
       path.resolve(__dirname, "node_modules")
     ]),
     new ProgressBarPlugin(),
-    new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
       inject: false,  // required
       template: require('html-webpack-template'),
