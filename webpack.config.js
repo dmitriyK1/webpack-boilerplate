@@ -13,7 +13,7 @@ const config = {
     new ProgressBarPlugin(),
     new CleanWebpackPlugin(['build']),
     new HtmlWebpackPlugin({
-      inject: false,
+      inject: false,  // required
       template: require('html-webpack-template'),
       appMountId: 'root',
       title: "TADAMUS",
