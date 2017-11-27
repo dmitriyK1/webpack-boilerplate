@@ -1,4 +1,5 @@
 const path = require('path');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const config = {
   entry: './index',
@@ -6,6 +7,9 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
   },
+  plugins: [
+    new ProgressBarPlugin()
+  ],
   module: {
     rules: [
       {
