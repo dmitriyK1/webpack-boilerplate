@@ -2,7 +2,7 @@ const path = require('path');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const config = {
-  entry: './index',
+  entry: './src',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
@@ -14,7 +14,15 @@ const config = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader'
+        include: path.resolve(__dirname, 'src'),
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            }
+          }
+        ]
       },
       {
         test: /\.scss$/,
