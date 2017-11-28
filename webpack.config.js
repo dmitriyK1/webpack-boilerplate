@@ -65,6 +65,18 @@ const config = {
           },
           "sass-loader" // compiles Sass to CSS
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 40000
+            }
+          },
+          "image-webpack-loader",
+        ]
       }
     ]
   }
