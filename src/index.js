@@ -6,8 +6,6 @@ import { time } from './globalStyles.scss';
 import  image  from './image.jpeg';
 import bigImage from './bigImage.jpeg';
 
-console.log(image);
-
 const Time = () => <div className={time}>
   {date}
   <img src={image} alt="something"/>
