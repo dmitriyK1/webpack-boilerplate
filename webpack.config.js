@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // new CleanWebpackPlugin(['build']),
 
 const config = {
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     stats: 'errors-only',
     host: process.env.HOST, // Defaults to `localhost`
