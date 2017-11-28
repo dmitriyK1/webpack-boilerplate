@@ -7,18 +7,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // new CleanWebpackPlugin(['build']),
 
 const config = {
+  // This is the best option for development because it is the smallest option that shows the correct line number
+  // No .map file emitted and the bundle.js file size is increased
   devtool: 'cheap-module-eval-source-map',
+
   devServer: {
     stats: 'errors-only',
     host: process.env.HOST, // Defaults to `localhost`
     port: process.env.PORT, // Defaults to 8080,
     overlay: true,
   },
+
   entry: './src',
+
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'bundle.js'
   },
+
   plugins: [
     // Ignore node_modules so CPU usage with poll
     // watching drops significantly.
@@ -39,6 +45,7 @@ const config = {
       ],
     })
   ],
+
   module: {
     rules: [
       {
