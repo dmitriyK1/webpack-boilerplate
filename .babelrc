@@ -1,4 +1,15 @@
 {
-	"presets": ["env", "react"],
-	"plugins": ["syntax-dynamic-import", "transform-class-properties"]
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "safari >= 7"],
+        "node": "current"
+      }
+    }],
+    "react"
+  ],
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-class-properties"
+  ]
 }

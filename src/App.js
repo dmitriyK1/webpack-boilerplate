@@ -5,10 +5,10 @@ export default class App extends React.Component {
     component: null,
   }
 
-  handleClick = () => {
-    import('./Time').then(
-      ({ default: Time }) => this.setState({ component: <Time /> })
-    )
+  handleClick = async () => {
+    const { default: Time } = await import('./Time');
+
+    this.setState({ component: <Time /> })
   }
 
   render() {
