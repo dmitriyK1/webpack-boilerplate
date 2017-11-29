@@ -18,11 +18,13 @@ const config = {
     overlay: true,
   },
 
-  entry: './src',
+  entry: {
+    bundle: './src',
+  },
 
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: '[name].js' // take name of each entry point and use it as a filename
   },
 
   plugins: [
@@ -43,7 +45,12 @@ const config = {
           content: 'Very important page!'
         }
       ],
-    })
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor', // save all common code from all entries into vendor.js file
+      // if resource pathname has 'node_modules' substring in it - put it into vendor.js
+      minChunks: ({ resource }) => /node_modules/.test(resource),
+    }),
   ],
 
   module: {
