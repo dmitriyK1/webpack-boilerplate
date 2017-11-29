@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const config = {
   // This is the best option for development because it is the smallest option that shows the correct line number
   // No .map file emitted and the bundle.js file size is increased
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
 
   devServer: {
     stats: 'errors-only',

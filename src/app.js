@@ -1,1 +1,0 @@
-module.exports.date = new Date().toString();
