@@ -22,7 +22,8 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].[chunkhash].js' // take name of each entry point and use it as a filename
+    filename: '[name].[chunkhash].js', // take name of each entry point and use it as a filename
+    chunkFilename: '[name].[chunkhash].js', // name template for chunks loaded via dynamic imports
   },
 
   plugins: [
