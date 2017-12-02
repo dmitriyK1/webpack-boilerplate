@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
-const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -50,16 +49,16 @@ const config = {
       minChunks: Infinity,
     }),
 
-    // inline manifest chunk into html to avoid another http request
-    new InlineChunkWebpackPlugin({
-       inlineChunks: ['manifest']
-   }),
-
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
 
-    new ScriptExtHtmlWebpackPlugin({ defaultAttribute: 'defer' }),
+    // inline manifest chunk into html to avoid another http request & set defer attribute to script tags
+    new ScriptExtHtmlWebpackPlugin({
+      defaultAttribute: 'defer',
+      inline: 'manifest',
+      sync: 'manifest',
+    }),
 
     // Plugin to replace a standard webpack chunkhash with md5
     // Need this plugin for deterministic hashing
