@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
+const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
 
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 // new CleanWebpackPlugin(['build']),
@@ -33,19 +34,9 @@ const config = {
     new webpack.WatchIgnorePlugin([
       path.resolve(__dirname, "node_modules")
     ]),
+
     new ProgressBarPlugin(),
-    new HtmlWebpackPlugin({
-      inject: false,  // required
-      template: require('html-webpack-template'),
-      appMountId: 'root',
-      title: "TADAMUS",
-      meta: [
-        {
-          name: 'description',
-          content: 'Very important page!'
-        }
-      ],
-    }),
+
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor', // save all common code from all entries into vendor.js file
       // if resource pathname has 'node_modules' substring in it - put it into vendor.js
@@ -56,6 +47,15 @@ const config = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity,
+    }),
+
+    // inline manifest chunk into html to avoid another http request
+    new InlineChunkWebpackPlugin({
+       inlineChunks: ['manifest']
+   }),
+
+    new HtmlWebpackPlugin({
+      template: './index.html',
     }),
 
     // Plugin to replace a standard webpack chunkhash with md5
