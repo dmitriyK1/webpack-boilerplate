@@ -4,6 +4,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackMd5Hash = require('webpack-md5-hash');
 const InlineChunkWebpackPlugin = require('html-webpack-inline-chunk-plugin');
+const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 // new CleanWebpackPlugin(['build']),
@@ -57,6 +58,8 @@ const config = {
     new HtmlWebpackPlugin({
       template: './index.html',
     }),
+
+    new ScriptExtHtmlWebpackPlugin({ defaultAttribute: 'defer' }),
 
     // Plugin to replace a standard webpack chunkhash with md5
     // Need this plugin for deterministic hashing
