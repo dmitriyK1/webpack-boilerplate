@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
 
 // const CleanWebpackPlugin = require('clean-webpack-plugin');
 // new CleanWebpackPlugin(['build']),
@@ -50,6 +51,18 @@ const config = {
       // if resource pathname has 'node_modules' substring in it - put it into vendor.js
       minChunks: ({ resource }) => /node_modules/.test(resource),
     }),
+
+    // extract the webpack bootstrap logic into a separate file
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest',
+      minChunks: Infinity,
+    }),
+
+    // Plugin to replace a standard webpack chunkhash with md5
+    // Need this plugin for deterministic hashing
+    // until this issue is resolved: https://github.com/webpack/webpack/issues/1315
+    // for more info: https://webpack.js.org/how-to/cache/
+    new WebpackMd5Hash(),
   ],
 
   module: {
