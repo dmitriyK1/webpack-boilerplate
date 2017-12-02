@@ -18,9 +18,7 @@ const config = {
     overlay: true,
   },
 
-  entry: {
-    bundle: './src',
-  },
+  entry: { bundle: './src', },
 
   output: {
     path: path.resolve(__dirname, 'build'),
