@@ -24,7 +24,7 @@ const config = {
 
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: '[name].js' // take name of each entry point and use it as a filename
+    filename: '[name].[chunkhash].js' // take name of each entry point and use it as a filename
   },
 
   plugins: [
