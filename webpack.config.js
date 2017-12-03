@@ -29,12 +29,6 @@ const config = {
   },
 
   plugins: [
-    // Ignore node_modules so CPU usage with poll
-    // watching drops significantly.
-    new webpack.WatchIgnorePlugin([
-      path.resolve(__dirname, "node_modules")
-    ]),
-
     new ProgressBarPlugin(),
 
     new webpack.optimize.CommonsChunkPlugin({
