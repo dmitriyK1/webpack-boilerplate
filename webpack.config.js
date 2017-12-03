@@ -86,7 +86,7 @@ const config = {
               localIdentName: '[path][name]__[local]--[hash:base64:5]'
             }
           },
-          "sass-loader" // compiles Sass to CSS
+          "fast-sass-loader" // compiles Sass to CSS
         ]
       },
       {
