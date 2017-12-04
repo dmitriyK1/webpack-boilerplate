@@ -3,13 +3,13 @@ import React from 'react';
 export default class App extends React.Component {
   state = {
     component: null,
-  }
+  };
 
   handleClick = async () => {
     const { default: Time } = await import('./Time');
 
-    this.setState({ component: <Time /> })
-  }
+    this.setState({ component: <Time /> });
+  };
 
   render() {
     return (
@@ -19,4 +19,4 @@ export default class App extends React.Component {
       </div>
     );
   }
-};
+}

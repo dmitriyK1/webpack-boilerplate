@@ -9,7 +9,8 @@ const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 // new CleanWebpackPlugin(['build']),
 
 const config = {
-  // This is the best option for development because it is the smallest option that shows the correct line number
+  // This is the best option for development because it is the smallest option
+  // that shows the correct line number
   // No .map file emitted and the bundle.js file size is increased
   devtool: 'cheap-module-eval-source-map',
 
@@ -20,7 +21,7 @@ const config = {
     overlay: true,
   },
 
-  entry: { bundle: './src', },
+  entry: { bundle: './src' },
 
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -47,7 +48,8 @@ const config = {
       template: './index.html',
     }),
 
-    // inline manifest chunk into html to avoid another http request & set defer attribute to script tags
+    // inline manifest chunk into html to avoid another http request
+    // & set defer attribute to script tags
     new ScriptExtHtmlWebpackPlugin({
       defaultAttribute: 'defer',
       inline: 'manifest',
@@ -64,6 +66,12 @@ const config = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
+      {
         test: /\.jsx?$/,
         include: path.resolve(__dirname, 'src'),
         use: [
@@ -71,38 +79,38 @@ const config = {
             loader: 'babel-loader',
             options: {
               cacheDirectory: true,
-            }
-          }
-        ]
+            },
+          },
+        ],
       },
       {
         test: /\.scss$/,
         use: [
-          "style-loader", // creates style nodes from JS strings
+          'style-loader', // creates style nodes from JS strings
           {
-            loader: "css-loader", // translates CSS into CommonJS,
+            loader: 'css-loader', // translates CSS into CommonJS,
             options: {
               modules: true,
-              localIdentName: '[path][name]__[local]--[hash:base64:5]'
-            }
+              localIdentName: '[path][name]__[local]--[hash:base64:5]',
+            },
           },
-          "fast-sass-loader" // compiles Sass to CSS
-        ]
+          'fast-sass-loader', // compiles Sass to CSS
+        ],
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
-              limit: 40000
-            }
+              limit: 40000,
+            },
           },
-          "image-webpack-loader",
-        ]
-      }
-    ]
-  }
+          'image-webpack-loader',
+        ],
+      },
+    ],
+  },
 };
 
 module.exports = config;
