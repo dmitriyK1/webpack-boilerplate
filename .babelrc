@@ -10,7 +10,6 @@
   ],
   "plugins": [
     "syntax-dynamic-import",
-    "transform-class-properties",
-    "transform-react-jsx-img-import"
+    "transform-class-properties"
   ]
 }
